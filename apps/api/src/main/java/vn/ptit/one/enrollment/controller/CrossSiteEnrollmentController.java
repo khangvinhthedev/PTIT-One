@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import vn.ptit.one.auth.model.AuthenticatedUser;
+import vn.ptit.one.enrollment.dto.CrossCampusClassOffer;
 import vn.ptit.one.enrollment.dto.CrossSiteRequestBody;
 import vn.ptit.one.enrollment.model.CrossSiteRequest;
 import vn.ptit.one.enrollment.service.CrossSiteEnrollmentService;
@@ -36,6 +37,16 @@ public class CrossSiteEnrollmentController {
     public List<CrossSiteRequest> list(@AuthenticationPrincipal AuthenticatedUser user,
             @RequestParam String maHocKy) {
         return crossSite.list(user, maHocKy);
+    }
+
+    /**
+     * Lớp trực tuyến của cơ sở đích. {@code maCoSoHost} chỉ nói "đọc lớp ở database
+     * nào"; cơ sở nhà vẫn lấy từ JWT nên không có đường leo thang đặc quyền.
+     */
+    @GetMapping("/classes")
+    public List<CrossCampusClassOffer> classes(@AuthenticationPrincipal AuthenticatedUser user,
+            @RequestParam String maCoSoHost, @RequestParam String maHocKy) {
+        return crossSite.availableClasses(user, maCoSoHost, maHocKy);
     }
 
     @PostMapping

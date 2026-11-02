@@ -142,6 +142,13 @@ export const NAV_ITEMS: readonly NavItem[] = [
     inMenu: false,
   },
   {
+    path: ROUTES.svLienCoSo,
+    label: 'Đăng ký học ở cơ sở khác',
+    roles: ['SINH_VIEN'],
+    feature: 'F08',
+    inMenu: false,
+  },
+  {
     path: ROUTES.svDotDangKy,
     label: 'Lịch đợt đăng ký',
     roles: ['SINH_VIEN'],

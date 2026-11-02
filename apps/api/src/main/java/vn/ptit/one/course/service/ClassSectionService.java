@@ -74,6 +74,17 @@ public class ClassSectionService {
         return classes.search(maHocKy, maMonHoc, campusScope, maGiangVien);
     }
 
+    /**
+     * Mọi lớp của CHÍNH database đang chọn, không lọc theo cơ sở người gọi.
+     *
+     * <p>Dùng cho bước Host của saga liên cơ sở: {@code SiteContext} đã trỏ sang
+     * database của cơ sở mở lớp, nên lọc thêm theo {@code homeCampus} của sinh
+     * viên sẽ ra danh sách rỗng.
+     */
+    public List<ClassSection> searchAtCurrentSite(String maHocKy) {
+        return classes.search(maHocKy, null, null, null);
+    }
+
     public ClassSection detail(AuthenticatedUser user, String maLopHP) {
         ClassSection lop = require(maLopHP);
         requireReadable(user, lop);

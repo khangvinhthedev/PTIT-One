@@ -1,0 +1,319 @@
+@use '@/styles/tokens' as tokens;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-lg;
+  padding: tokens.$space-xl;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: tokens.$radius-lg;
+  box-shadow: var(--panel-shadow);
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: tokens.$space-lg;
+
+  h3 {
+    margin: 0;
+    font-size: tokens.$font-size-md;
+    font-weight: 600;
+    color: var(--notice-text);
+  }
+}
+
+.eyebrow {
+  font-size: tokens.$font-size-2xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-red);
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: tokens.$space-xs;
+  padding: 0 tokens.$space-sm;
+  font-size: tokens.$font-size-xs;
+  color: var(--ptit-on-brand);
+  background: var(--accent-red);
+  border-radius: 999px;
+}
+
+.refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.$space-xs;
+  padding: tokens.$space-xs tokens.$space-md;
+  font: inherit;
+  font-size: tokens.$font-size-xs;
+  color: var(--notice-meta);
+  background: var(--panel-bg);
+  border: 1px solid var(--field-border);
+  border-radius: tokens.$radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-red);
+    border-color: var(--tile-brand-border);
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: tokens.$space-sm;
+  padding: tokens.$space-2xl tokens.$space-xl;
+  font-size: tokens.$font-size-sm;
+  color: var(--notice-meta);
+  text-align: center;
+  background: var(--field-icon-bg);
+  border: 1px dashed var(--field-border);
+  border-radius: tokens.$radius-md;
+
+  svg {
+    color: var(--progress-done);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-lg;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
+  padding: tokens.$space-lg tokens.$space-lg tokens.$space-lg tokens.$space-xl;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-left: 4px solid var(--panel-border);
+  border-radius: tokens.$radius-md;
+}
+
+.row.ok {
+  border-left-color: var(--progress-done);
+}
+
+.row.wait {
+  border-left-color: var(--tile-warm-text);
+}
+
+.row.bad {
+  border-left-color: var(--accent-red);
+}
+
+.row.off {
+  border-left-color: var(--field-border);
+  opacity: 0.85;
+}
+
+.rowHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: tokens.$space-sm tokens.$space-lg;
+}
+
+.subject {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: tokens.$space-sm;
+  min-width: 0;
+
+  h4 {
+    margin: 0;
+    font-size: tokens.$font-size-md;
+    font-weight: 600;
+    color: var(--text-h);
+  }
+}
+
+.code {
+  padding: 1px tokens.$space-sm;
+  font-family: var(--mono);
+  font-size: tokens.$font-size-2xs;
+  color: var(--notice-meta);
+  background: var(--field-icon-bg);
+  border-radius: tokens.$radius-sm;
+}
+
+.badge {
+  flex: 0 0 auto;
+  padding: 2px tokens.$space-md;
+  font-size: tokens.$font-size-xs;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.badge.ok {
+  color: var(--progress-done);
+  background: color-mix(in srgb, var(--progress-done) 12%, var(--panel-bg));
+}
+
+.badge.wait {
+  color: var(--tile-warm-text);
+  background: var(--tile-warm-bg);
+}
+
+.badge.bad {
+  color: var(--accent-red);
+  background: var(--tile-brand-bg);
+}
+
+.badge.off {
+  color: var(--notice-meta);
+  background: var(--field-icon-bg);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: tokens.$space-xs;
+  margin: 0;
+  font-size: tokens.$font-size-xs;
+  color: var(--notice-meta);
+}
+
+.sep {
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* --- Tiến trình saga -------------------------------------------------- */
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: tokens.$space-lg;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: tokens.$font-size-2xs;
+  color: var(--notice-meta);
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.$space-xs;
+
+  & + &::before {
+    content: '';
+    width: 14px;
+    border-top: 1px dashed var(--progress-future);
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--progress-future);
+  border-radius: 50%;
+}
+
+.done {
+  color: var(--notice-text);
+
+  .dot {
+    background: var(--progress-done);
+  }
+}
+
+.active {
+  font-weight: 600;
+  color: var(--tile-warm-text);
+
+  .dot {
+    background: var(--tile-warm-text);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tile-warm-text) 22%, transparent);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+}
+
+.fail {
+  color: var(--accent-red);
+
+  .dot {
+    background: var(--accent-red);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--tile-warm-text) 8%, transparent);
+  }
+}
+
+.reason {
+  margin: 0;
+  padding: tokens.$space-xs tokens.$space-md;
+  font-size: tokens.$font-size-xs;
+  color: var(--accent-red);
+  background: var(--tile-brand-bg);
+  border-radius: tokens.$radius-sm;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: tokens.$space-md;
+  padding-top: tokens.$space-xs;
+}
+
+.secondary,
+.danger {
+  padding: tokens.$space-xs tokens.$space-lg;
+  font: inherit;
+  font-size: tokens.$font-size-xs;
+  font-weight: 600;
+  background: var(--panel-bg);
+  border-radius: tokens.$radius-sm;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.secondary {
+  color: var(--notice-text);
+  border: 1px solid var(--field-border);
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-red);
+  }
+}
+
+.danger {
+  color: var(--accent-red);
+  border: 1px solid var(--tile-brand-border);
+
+  &:hover:not(:disabled) {
+    background: var(--tile-brand-bg);
+  }
+}
