@@ -74,6 +74,7 @@ export const DEMO_RESULTS: readonly TermResults[] = [
 export const STUDENT_FEATURES: readonly FeatureLink[] = [
   { label: 'Thông báo từ ban quản trị', href: ROUTES.thongBao }, // /api/me/notifications
   { label: 'Đăng ký môn học', href: ROUTES.svDangKy }, // /api/me/enrollments
+  { label: 'Đăng ký học ở cơ sở khác', href: ROUTES.svLienCoSo }, // /api/me/cross-campus
   { label: 'Xem điểm', href: ROUTES.svBangDiem }, // /api/me/grades
   { label: 'Thời khoá biểu dạng tuần', href: ROUTES.svLichHoc }, // /api/me/timetable?tuan=
   { label: 'Xem chương trình đào tạo', href: ROUTES.svChuongTrinh }, // /api/programs/{maCTDT}

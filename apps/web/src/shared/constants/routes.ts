@@ -16,6 +16,7 @@ export const ROUTES = {
 
   // Sinh viên — F07, F08, F09
   svDangKy: '/sinh-vien/dang-ky',
+  svLienCoSo: '/sinh-vien/lien-co-so',
   svBangDiem: '/sinh-vien/bang-diem',
   svLichHoc: '/sinh-vien/lich-hoc',
   svLichHocHocKy: '/sinh-vien/lich-hoc-hoc-ky',

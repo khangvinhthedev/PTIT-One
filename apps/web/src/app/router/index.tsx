@@ -9,6 +9,7 @@ import { AdminClassesPage } from '@/pages/AdminClassesPage'
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage'
 import { AdminRegistrationPage } from '@/pages/AdminRegistrationPage'
 import { CatalogAdminPage } from '@/pages/CatalogAdminPage'
+import { CrossCampusPage } from '@/pages/CrossCampusPage'
 import {
   ActivatePage,
   ChangePasswordPage,
@@ -59,6 +60,7 @@ const SCREENS: Partial<Record<string, ReactNode>> = {
   [ROUTES.qtDanhMuc]: <CatalogAdminPage />,
   [ROUTES.qtThongBao]: <AdminNoticePage />,
   [ROUTES.svDangKy]: <RegistrationPage />,
+  [ROUTES.svLienCoSo]: <CrossCampusPage />,
   [ROUTES.svDotDangKy]: <PeriodPage />,
   [ROUTES.svMonHoc]: <PrerequisitePage />,
   [ROUTES.svChuongTrinh]: <ProgramPage />,

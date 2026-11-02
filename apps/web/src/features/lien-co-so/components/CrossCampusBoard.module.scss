@@ -1,0 +1,80 @@
+@use '@/styles/tokens' as tokens;
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-xl;
+}
+
+.muted {
+  font-size: tokens.$font-size-sm;
+  color: var(--notice-meta);
+}
+
+.rule {
+  display: flex;
+  align-items: flex-start;
+  gap: tokens.$space-md;
+  margin: 0;
+  padding: tokens.$space-md tokens.$space-lg;
+  font-size: tokens.$font-size-xs;
+  line-height: 1.5;
+  color: var(--tile-warm-text);
+  background: var(--tile-warm-bg);
+  border: 1px solid var(--tile-warm-border);
+  border-radius: tokens.$radius-md;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  b {
+    font-weight: 600;
+  }
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: tokens.$space-md;
+  padding: tokens.$space-md tokens.$space-lg;
+  font-size: tokens.$font-size-sm;
+  border-left: 4px solid;
+  border-radius: tokens.$radius-sm;
+  animation: notice-in 0.2s ease-out;
+
+  button {
+    display: inline-flex;
+    padding: 0;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.success {
+  color: var(--progress-done);
+  background: color-mix(in srgb, var(--progress-done) 10%, var(--panel-bg));
+  border-color: var(--progress-done);
+}
+
+.error {
+  color: var(--accent-red);
+  background: var(--tile-brand-bg);
+  border-color: var(--accent-red);
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}

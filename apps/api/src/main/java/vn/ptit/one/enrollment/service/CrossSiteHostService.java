@@ -3,6 +3,7 @@ package vn.ptit.one.enrollment.service;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -103,6 +104,19 @@ public class CrossSiteHostService {
     /** Thông tin lớp để Home kiểm trước khi ghi yêu cầu. Chỉ đọc. */
     public ClassSection readClass(String maLopHP) {
         return classes.require(maLopHP);
+    }
+
+    /**
+     * Lớp Host đang mở cho sinh viên cơ sở khác. Ba điều kiện trùng với {@link #xet}:
+     * lớp mở, cho phép liên cơ sở, và hình thức trực tuyến — hiện trước để sinh
+     * viên không gửi yêu cầu chắc chắn bị từ chối.
+     */
+    public List<ClassSection> openForCrossCampus(String maHocKy) {
+        return classes.searchAtCurrentSite(maHocKy).stream()
+                .filter(lop -> ClassSectionService.MO.equals(lop.trangThai()))
+                .filter(ClassSection::choPhepLienCoSo)
+                .filter(lop -> ClassSectionService.TRUC_TUYEN.equals(lop.hinhThucHoc()))
+                .toList();
     }
 
     private HostDecision xet(String maLopHP, int phienBanLich) {

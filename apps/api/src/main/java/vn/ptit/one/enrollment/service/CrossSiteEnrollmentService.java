@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import vn.ptit.one.auth.model.AuthenticatedUser;
 import vn.ptit.one.auth.model.Role;
 import vn.ptit.one.course.model.ClassSection;
+import vn.ptit.one.enrollment.dto.CrossCampusClassOffer;
 import vn.ptit.one.enrollment.model.CrossSiteRequest;
 import vn.ptit.one.enrollment.model.EnrollmentStatus;
 import vn.ptit.one.enrollment.model.HostDecision;
@@ -118,6 +119,20 @@ public class CrossSiteEnrollmentService {
 
     public List<CrossSiteRequest> list(AuthenticatedUser user, String maHocKy) {
         return home.list(requireStudent(user), maHocKy);
+    }
+
+    /**
+     * Lớp trực tuyến của cơ sở đích để sinh viên chọn.
+     *
+     * <p>Đọc ở Host vì {@code LopHocPhan} thuộc cơ sở mở lớp; Home không có bảng
+     * đó. Chỉ đọc, không ghi gì — chưa phải một bước của saga.
+     */
+    public List<CrossCampusClassOffer> availableClasses(AuthenticatedUser user, String maCoSoHost,
+            String maHocKy) {
+        requireStudent(user);
+        return SiteContext.runAt(maCoSoHost, () -> host.openForCrossCampus(maHocKy).stream()
+                .map(lop -> CrossCampusClassOffer.of(lop, schedules.classSlots(lop.maLopHP())))
+                .toList());
     }
 
     private void apply(String maCoSoHost, Pending cho) {
